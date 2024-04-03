@@ -7,11 +7,72 @@
     Nota = vários on triggers são sempre condições OR. Da mesma forma, on misturado com when também são condições OR.
 
 -->
+<h2 #trigger>Deferrable Views</h2>
 
-<h2>Deferrable Views</h2>
-<!--pode colocar outras trigger-->
+@defer (on interaction) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>  
+} @error {
+    <p>Loading failed :(</p>
+}
 
-@defer (on idle) {
+<!--ERROR
+    error entra quando a internet do usuario não esta boa
+-->
+
+
+<!--
+    LOADING
+    loading é o download do nosso componente ou dos componentes que estejam aqui
+
+@defer (on interaction) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading (after 2000ms; minimum 5s){        -> Esse componente tá demorando 150 ms para carregar? Sim, entao deixa o meu loading no mínimo 5s
+    <p>Loading...</p>  
+} @error {
+    <p>Loading failed :(</p>
+}
+-->
+
+
+
+
+<!--
+    PLACEHOLDER:
+
+@placeholder mostra uma mensagem antes que tenha carregado algo ou antes que alguma interação tenha acontecido. Você pode colocar interações, ou no caso condições 
+
+<h2 #trigger>Deferrable Views</h2>
+
+@defer (on interaction) {
+    <app-new-component />
+} @placeholder (minimum 5s) {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+-->
+
+
+
+
+
+
+
+<!--
+    WHEN:
+
+    UTILIZANDO O WHEN
+<button (click)="isTrue = true"> Add True </button>
+
+@defer (when loadingData$ | async) {
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
@@ -20,12 +81,17 @@
 } @error {
     <p>Loading failed :(</p>
 }
+-->
+
+
+
 
 
 
 <!-- 
+    DEFER:
 
-@defer (on timer(5s)) {
+@defer (on idle) {                                        OBS:idle é um valor padrão / aciona o carregamento adiado assim que o navegador atingir o estado inativo / o defer faz pequenos download 
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
@@ -35,7 +101,17 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-<h2 style="margin-bottom: 5000px">Deferrable Views</h2>
+@defer (on timer(5s)) {                                       OBS: carrega o nosso defer 
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+<h2 style="margin-bottom: 5000px">Deferrable Views</h2>        OBS: quando chega na posição do nosso defer ele carrega
 @defer (on viewport) {
     <app-new-component />
 } @placeholder {
@@ -46,8 +122,8 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-<h2 #trigger>Deferrable Views</h2>
-    @defer (on interaction(trigger)) {
+<h2 #trigger>Deferrable Views</h2>                             OBS: cria interações com o defer / trigger cria interações
+    @defer (on interaction(trigger);) {
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
@@ -57,7 +133,7 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-<h2>Deferrable Views</h2>
+<h2>Deferrable Views</h2>                                 
     @defer (on interaction(trigger)) {
     <app-new-component />
 } @placeholder {
@@ -68,7 +144,7 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-@defer (on hover) {
+@defer (on hover) {                                            OBS: quando dar um hover no defer, que é mostrar antes de carregar algo / com o evento hover ao passar o mouse ele já funciona
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
@@ -78,7 +154,7 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-@defer (on immedate) {
+@defer (on immedate) {                                         OBS: assim que terminar a renderiaação com o imediato ele vai carregar o nosso defer É parecido com o idle.
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
@@ -88,10 +164,21 @@
     <p>Loading failed :(</p>
 }
 ----------------------------------------------------------
-@defer (on interactopn; perfetch on idle) {
+@defer (on interaction; prefetch on idle) {                    OBS: o prefet "fala" que você vai carregar, você pode carregar, dó que só vai acontecer algo quando tiver uma interação. 
     <app-new-component />
 } @placeholder {
     <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+<h2 #trigger>Deferrable Views</h2>
+@defer (on interaction(trigger2), prefetch on interaction(trigger)) {     OBS: trigger ou trigger2 / o prefetch é para quando você já sabe o que que o usuário vai fazer
+    <app-new-component />
+} @placeholder {
+    <p #trigger2>Mostrar antes de carregar algo</p>    
 } @loading {
     <p>Loading...</p>
 } @error {
