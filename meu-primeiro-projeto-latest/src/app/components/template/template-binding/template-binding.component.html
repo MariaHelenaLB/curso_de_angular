@@ -1,0 +1,64 @@
+<h2>Templates</h2>
+<h3>Text Interpolation</h3>
+<p>{{ name }} - {{ age }}</p>
+
+<p>{{ condition }}</p> 
+
+<hr />
+
+<h2>Property binding</h2>
+<!-- <element [property]='value'></element> -->
+<button [disabled]="isDisabled">Button</button>
+<!-- <img [src]="srcValue" [alt]="name" [title]="name" /> -->
+
+<hr />
+
+<h2>Attribute binding</h2>
+<!-- <element [attr.attribute-you-are-targeting]='value'></element> -->
+<p [attr.title]="name" [attr.aria-label]="name">Maria Helena Lima Barreto</p>
+
+<hr />
+
+<h2>Class and Style binding</h2>
+<p [class.background-red]="age > 18" [class.background-blue]="age < 18">{{ name }}</p>
+
+<p [style.text-decoration]="isTextDecoration">{{ age }}</p>
+
+<hr />
+
+<h2>Event binding</h2>
+<!--
+    <element
+        (TargetEventName)='TemplateStatement'
+    ></element>
+-->
+
+<button (click)="sum()">+</button>
+<button (click)="sub()">-</button>
+<input (keydown.shift.t)="onKeyDown($event)" /> 
+
+<div 
+    style="background: red; width: 300px; height: 300px; margin-top: 10px;"
+    (mousemove)="onMouseMove($event)"
+></div>
+
+<hr />
+<h3>Two-way binding</h3>
+<input [(ngModel)]="name" />
+
+{{ name }}
+
+<hr />
+
+<h3>Diretivas de atributos</h3>
+<div [ngClass]="{ 'background-red': age > 17, 'background-blue': age < 17 }">
+    Classes condicionais.
+</div>
+
+<div [ngStyle]="{
+    color: age > 17 ? 'green' : 'red',
+    'font-size': age > 17 ? '10px' : '20px',
+}"
+>
+Estilos dinâmica.
+</div>

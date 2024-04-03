@@ -1,0 +1,100 @@
+<!--
+
+    on = especifica uma consição de adicionador usando um adicionador da lista (idle, timer, viewport, interaction, hover, immediate, prefetch).
+
+    when = esprecifica uma condição imperativa como uma expressão que etorna um booleano. Quando esta expressão se tornar verdadeira, o espaço reservado é trocado pelo conteúdo carregado lentamente (o que pode ser uma operação assíncrona se as dependências precisarem ser buscadas).
+
+    Nota = vários on triggers são sempre condições OR. Da mesma forma, on misturado com when também são condições OR.
+
+-->
+
+<h2>Deferrable Views</h2>
+<!--pode colocar outras trigger-->
+
+@defer (on idle) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+
+
+
+<!-- 
+
+@defer (on timer(5s)) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+<h2 style="margin-bottom: 5000px">Deferrable Views</h2>
+@defer (on viewport) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+<h2 #trigger>Deferrable Views</h2>
+    @defer (on interaction(trigger)) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+<h2>Deferrable Views</h2>
+    @defer (on interaction(trigger)) {
+    <app-new-component />
+} @placeholder {
+    <p #trigger>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+@defer (on hover) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+@defer (on immedate) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+----------------------------------------------------------
+@defer (on interactopn; perfetch on idle) {
+    <app-new-component />
+} @placeholder {
+    <p>Mostrar antes de carregar algo</p>    
+} @loading {
+    <p>Loading...</p>
+} @error {
+    <p>Loading failed :(</p>
+}
+-->
