@@ -1,16 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 //interface
 import { IProjects } from '../../interface/IProjects';
 
+//material
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [],
+  imports: [MatDialogModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
 export class ProjectsComponent {
+  #dialog = inject(MatDialog);
+  
   public arrayProjects = signal<IProjects[]>([
     
     {
@@ -42,7 +47,7 @@ export class ProjectsComponent {
         },
       ],
     },
-
+  
   ]);
 }
 

@@ -14,7 +14,7 @@ export class ExperiencesComponent {
   public arrayExperiences = signal<IExperiences[]>([
     {
       summary: {
-        strong: 'Desenvolvedora de Sistema',
+        strong: 'Estagiária em Desenvolvimento de Sistema',
         p: 'ABC Technology | Mar 2024 - Present',
       },
       text: '<p>Comecei a atuar como desenvolvedora de sistema na ABC Technology no dia 19/03/2024.</p>',

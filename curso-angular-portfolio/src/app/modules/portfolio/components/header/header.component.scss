@@ -19,6 +19,7 @@
         img {
             border-radius: 100px;
             border: 5px solid var(--white);
+            margin-bottom: 15px; 
         }
     }
 
@@ -67,7 +68,7 @@
                     a {
                         display: flex;
                         justify-content: center;
-                        align-items: center;
+                        align-items: flex-start;
                         flex-direction: column;
 
                         p {
@@ -82,5 +83,19 @@
             }
         }
 
+    }
+
+    @media (max-width: 750px) {
+        aside nav ul,
+        section {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        aside nav ul li,
+        aside nav ul li a,
+        section figure {
+            width: 100%;
+        }
     }
 }
