@@ -6,6 +6,12 @@ import { IProjects } from '../../interface/IProjects';
 //material
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
+//enum
+import { EDialogPanelClass } from '../../enum/EDialogPanelClass.enum';
+
+//dialog
+import { DialogProjectsComponent } from '../dialog/dialog-projects/DialogProjectsComponent';
+
 @Component({
   selector: 'app-projects',
   standalone: true,
@@ -46,8 +52,14 @@ export class ProjectsComponent {
           href: 'https://www.cursoemvideo.com/cursos/',
         },
       ],
-    },
-  
+    }, 
   ]);
+
+  public openDialog(data: IProjects) {
+    this.#dialog.open(DialogProjectsComponent, {
+      data,
+      panelClass: EDialogPanelClass.PROJECTS
+    })
+  }
 }
 
