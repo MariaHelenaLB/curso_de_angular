@@ -1,0 +1,40 @@
+<h2>Pipes</h2>
+
+
+<ul>
+    <li>
+        Date: {{ date() | date: 'dd/MM/yyy' }}
+    </li>
+
+    <li>
+        UpperCase: {{ 'Maria Helena' | uppercase }}
+    </li>
+
+    <li>
+        LowerCase: {{ 'MARIA HELENA' | lowercase }}
+    </li>
+
+    <li>
+        JsonPipe: {{ json() | json }}
+    </li>
+
+    <li>
+        AsyncPipe: {{ loadingData$ | async }}
+    </li>
+
+    <li>
+        CurrencyPipe: {{ 200.5 | currency : "BRL" }}
+    </li>
+
+    <li>
+        DecimalPipe: {{ 2000.5544 | number : "1.1-1" }}
+    </li>
+
+    <li>
+        PercentPipe: {{ 0.155 | percent : "1.0-4" }}
+    </li>
+
+    <li>
+        customString: {{ "Maria Helena Lima Barreto" | customString : "lower" }}
+    </li>
+</ul>
