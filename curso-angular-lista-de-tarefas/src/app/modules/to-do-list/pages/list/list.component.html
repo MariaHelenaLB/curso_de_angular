@@ -1,25 +1,22 @@
-<div class="container">
-    <img src="../../../../../assets/img/task-list-null.png" 
-    alt="Sua lista está vazia - imagem ilustrativa"
-    loading="eager"
+@if(!getListItems().length){
+    <div class="container">
+    <img 
+        src="../../../../../assets/img/task-list-null.png" 
+        alt="Sua lista está vazia - imagem ilustrativa"
+        loading="eager"
     />
-
-    <button class="btn btn-primary">
-        Crie uma lista de tarefa
-    </button>
-
-    <div>
-        <label class="input-label-texts" for="inputValue">
-            <input 
-                type="text" 
-                placeholder="Adicione um novo item" 
-                autofocus 
-            />
-
-            <button 
-                class="btn btn-primary-circle" 
-                title="Adcionar um novo item">
-            </button>
-        </label>
+    @if(addItem()) {
+        <button class="btn btn-primary" (click)="addItem.set(false)">
+            Crie uma lista de tarefa
+        </button>
+    } @else {
+    <app-input-add-item 
+    [inputListItems]="getListItems()"
+    (outputAddListItem)="getInputAndAddItem($event)" />
+    }
     </div>
-</div>
+} @else {
+    <app-input-add-item 
+    [inputListItems]="getListItems()"
+    (outputAddListItem)="getInputAndAddItem($event)" />
+}
