@@ -1,0 +1,21 @@
+<p>template-driven-forms</p>
+
+<form>
+    <label>
+        Nome:
+        <input 
+        type="text" 
+        name="inputName"
+        #name="ngModel" 
+        [ngModel]="name.value"
+        required
+        />
+    </label>
+
+    <hr />
+    <p>value: {{ name.value }}</p>
+    <p>valid: {{ name.valid }}</p>
+    <p>dirty: {{ name.dirty }}</p>
+    <p>touched: {{ name.touched }}</p>
+    <hr />
+</form>
