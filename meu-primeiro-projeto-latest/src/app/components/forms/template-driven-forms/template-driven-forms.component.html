@@ -1,6 +1,12 @@
-<p>template-driven-forms</p>
+<!--
+    Ele é util para adicionar um formulário simples a um aplicativo, como um formulário de inscrição em uma lista de e-mail.
 
-<form>
+    É mai fácil de adicionar a um aplicativo, mas não são escalonáveis tão bem quanto os formulários reatrivos.
+-->
+
+<h2>Template-driven-forms</h2>
+
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
     <label>
         Nome:
         <input 
@@ -18,4 +24,129 @@
     <p>dirty: {{ name.dirty }}</p>
     <p>touched: {{ name.touched }}</p>
     <hr />
+
+    <label>
+        Feminino
+        <input 
+        type="radio" 
+        value="Feminino"
+        name="inputSexo"
+        #sexo="ngModel" 
+        [ngModel]="sexo.value"
+        required
+        />
+    </label>
+
+
+    <label>
+        Masculino
+        <input 
+        type="radio" 
+        value="Masculino"
+        name="inputSexo"
+        #sexo="ngModel" 
+        [ngModel]="sexo.value"
+        required
+        />
+    </label>
+
+    <label>
+        Outros
+        <input 
+        type="radio" 
+        value="Outros"
+        name="inputSexo"
+        #sexo="ngModel" 
+        [ngModel]="sexo.value"
+        required
+        />
+    </label>
+
+    <hr />
+    <p>value: {{ sexo.value }}</p>
+    <p>valid: {{ sexo.valid }}</p>
+    <p>dirty: {{ sexo.dirty }}</p>
+    <p>touched: {{ sexo.touched }}</p>
+    <hr />
+
+    <label>
+        Angular
+        <input 
+        type="checkbox" 
+        value="Angular"
+        name="checkboxAngular"
+        #techAngular="ngModel" 
+        [ngModel]="techAngular.value"
+        required
+        />
+
+    <hr />
+    <p>value: {{ techAngular.value }}</p>
+    <p>valid: {{ techAngular.valid }}</p>
+    <p>dirty: {{ techAngular.dirty }}</p>
+    <p>touched: {{ techAngular.touched }}</p>
+    <hr />
+    </label>
+
+    <label>
+        Vue
+        <input 
+        type="checkbox" 
+        value="Vue"
+        name="checkboxVue"
+        #techVue="ngModel" 
+        [ngModel]="techVue.value"
+        required
+        />
+
+    <hr />
+    <p>value: {{ techVue.value }}</p>
+    <p>valid: {{ techVue.valid }}</p>
+    <p>dirty: {{ techVue.dirty }}</p>
+    <p>touched: {{ techVue.touched }}</p>
+    <hr />
+    </label>
+
+    <label>
+        React
+        <input 
+        type="checkbox" 
+        value="React"
+        name="checkboxReact"
+        #techReact="ngModel" 
+        [ngModel]="techReact.value"
+        required
+        />
+
+    <hr />
+    <p>value: {{ techReact.value }}</p>
+    <p>valid: {{ techReact.valid }}</p>
+    <p>dirty: {{ techReact.dirty }}</p>
+    <p>touched: {{ techReact.touched }}</p>
+    <hr />
+    </label>
+
+    <select name="selectcomidas" #comidas="ngModel" ngModel>
+        <option value="">Selecione um alimento</option>
+        @for (item of listComidas(); track item) {
+            <option [ngValue]="item">{{ item.comida }}</option>
+        }
+    </select>
+
+    <hr />
+    <p>value: {{ comidas.value | json }}</p>
+
+    <p>comida: {{ comidas.value?.comida }}</p>
+    <p>Preço: {{ comidas.value?.preco }}</p>
+
+    <p>valid: {{ comidas.valid }}</p>
+    <p>dirty: {{ comidas.dirty }}</p>
+    <p>touched: {{ comidas.touched }}</p>
+    <hr />
+
+    <button [disabled]="!form.valid">Send</button>
+
 </form>
+
+<p>Form Valid{{ form.valid }}</p>
+<p>For Value{{ form.value | json }}</p>
