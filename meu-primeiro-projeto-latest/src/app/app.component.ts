@@ -52,15 +52,13 @@ import { LifeCycleComponent } from './components/life-cycle/life-cycle.component
 -->
 
   <h1>Curso de Angular</h1>
-  <app-life-cycle [myNumber]="number" />
+  <app-life-cycle [myNumber]="number"> 
+    <p #text>Text</p>
+  </app-life-cycle>
 
   `,
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public number = 1;
-
-  ngOnInit(): void {
-   
-  }
 }

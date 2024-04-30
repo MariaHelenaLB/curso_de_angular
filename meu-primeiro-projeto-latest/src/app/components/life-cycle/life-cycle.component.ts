@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, signal, viewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -9,13 +9,14 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss'
 })
-export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit {
 
   @Input() public myNumber = 0;
 
   public myText = signal('MH')
 
   @ViewChild('content') public content!: ElementRef;
+  @ContentChild('text') public text! : ElementRef;
 
   //construtor ou inicializador
   constructor(private fb: FormBuilder) { }
@@ -40,11 +41,18 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
     console.log('ngDoCheck');
   }
 
-  
+  ngAfterContentInit(): void {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
+    console.log('ngAfterContentInit');
+    console.log(this.text.nativeElement.innerText);
+  }
+
   ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
     console.log('ngAfterViewInit');
     console.log(this.content.nativeElement.innerText);
-    this.content.nativeElement.innerText = 'Life Cycle 2';
-    console.log(this.content.nativeElement.innerText);
+    console.log(this.text.nativeElement.innerText);
   }
 }
