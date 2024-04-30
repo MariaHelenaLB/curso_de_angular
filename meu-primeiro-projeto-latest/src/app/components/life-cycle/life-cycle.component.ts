@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges, signal } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, signal, viewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -9,11 +9,13 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss'
 })
-export class LifeCycleComponent implements OnChanges, OnInit, DoCheck {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit {
 
   @Input() public myNumber = 0;
 
   public myText = signal('MH')
+
+  @ViewChild('content') public content!: ElementRef;
 
   //construtor ou inicializador
   constructor(private fb: FormBuilder) { }
@@ -36,5 +38,13 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
     console.log('ngDoCheck');
+  }
+
+  
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+    console.log(this.content.nativeElement.innerText);
+    this.content.nativeElement.innerText = 'Life Cycle 2';
+    console.log(this.content.nativeElement.innerText);
   }
 }
