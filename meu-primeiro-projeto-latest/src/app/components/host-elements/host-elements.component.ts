@@ -1,5 +1,5 @@
+import { Component, Host, HostBinding, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-host-elements',
@@ -7,15 +7,26 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './host-elements.component.html',
   styleUrl: './host-elements.component.scss',
+  /*
   host: {
     role: 'button',
     '[attr.class]': 'class',
     '(document:keypress)': 'updateHostListener($event)',
+    '(click)': 'updateClick()',
   },
+  */
 })
 export class HostElementsComponent {
-  public class = 'vidafullstack';
+
+  @HostBinding('attr.class') public class = 'vidafullstack';
+
+  @HostListener('document:keypress', ['$event'])
   public updateHostListener(envet: KeyboardEvent) {
     console.log(envet);
+  }
+
+  @HostListener('click', ['$event'])
+  public updateClick() {
+    alert('M. Helena');
   }
 }
