@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -54,7 +54,7 @@ import { LifeCycleComponent } from './components/life-cycle/life-cycle.component
   <h1>Curso de Angular</h1>
 
   @if (boolean) {
-    <app-life-cycle [myNumber]="number"> 
+    <app-life-cycle [inputMyNumber]="number"> 
       <p #text>Text</p>
     </app-life-cycle>
   }
@@ -62,9 +62,21 @@ import { LifeCycleComponent } from './components/life-cycle/life-cycle.component
   <button (click)="boolean = !boolean">Destroy Component</button>  
 
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class AppComponent {
-  public number = 1;
+export class AppComponent implements OnInit {
+  public number = signal(1);
   public boolean = true;
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+      setInterval(() => {
+      this.number.update((oldValue) => {
+        return oldValue + 1;
+      });
+    }, 1000);
+  }
 }

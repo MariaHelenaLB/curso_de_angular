@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, signal } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, signal } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -9,23 +9,31 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './life-cycle.component.html',
-  styleUrl: './life-cycle.component.scss'
+  styleUrl: './life-cycle.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked, AfterViewChecked, OnDestroy {
 
-  @Input() public myNumber = 0;
+  public myNumber = signal(0);
+  @Input() set inputMyNumber(value: number) {
+    this.myNumber.set(value)
+  }
 
+  public name = signal('Input: sem valor');
   public myText = signal('MH');
 
   @ViewChild('content') public content!: ElementRef;
   @ContentChild('text') public text! : ElementRef;
 
+  /*
     private _destroy$ = timer(0, 1000).pipe(takeUntilDestroyed())
     .subscribe({
       next: (next) => console.log('next', next),
       error: (error) => console.log('error', error),
       complete: () => console.log('Complete!')
     });
+  */
+
   //construtor ou inicializador
   constructor(private fb: FormBuilder) { }
  
