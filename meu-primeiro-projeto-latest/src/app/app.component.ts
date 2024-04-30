@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -15,13 +15,14 @@ import { ReactiveFormsComponent } from './components/forms/reactive-forms/reacti
 import { TemplateDrivenFormsComponent } from './components/forms/template-driven-forms/template-driven-forms.component';
 import { ContentComponent } from './components/content/content.component';
 import { HostElementsComponent } from './components/host-elements/host-elements.component';
+import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 
 
 @Component({
     selector: 'app-root',
     standalone: true,
 
-    imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent],
+    imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent],
 
     template: `
 <!-- 
@@ -47,12 +48,21 @@ import { HostElementsComponent } from './components/host-elements/host-elements.
       <p>Footer</p>
     </footer>
   </app-content>
+  <app-host-elements />
 -->
 
   <h1>Curso de Angular</h1>
-  <app-host-elements />
+  <app-life-cycle [myNumber]="number" />
 
-  `,
-    
+  `,   
+
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  public number = 1;
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.number++;
+    }, 1000);
+  }
+}
