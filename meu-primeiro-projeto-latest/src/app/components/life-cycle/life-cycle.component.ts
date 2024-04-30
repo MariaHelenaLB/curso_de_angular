@@ -20,7 +20,7 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
   @ViewChild('content') public content!: ElementRef;
   @ContentChild('text') public text! : ElementRef;
 
-    private destroy$ = timer(0, 1000).pipe(takeUntilDestroyed())
+    private _destroy$ = timer(0, 1000).pipe(takeUntilDestroyed())
     .subscribe({
       next: (next) => console.log('next', next),
       error: (error) => console.log('error', error),
