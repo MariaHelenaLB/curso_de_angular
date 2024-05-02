@@ -19,12 +19,13 @@ import { TemplateDrivenFormsComponent } from '@components/forms/template-driven-
 import { ContentComponent } from '@components/content/content.component';
 import { HostElementsComponent } from '@components/host-elements/host-elements.component';
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
+import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent],
 
   template: `
 <!-- 
@@ -79,14 +80,13 @@ import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component'
 -->
 
   <h1>Curso de Angular</h1>
-
+  <app-consume-service />
 
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
 export class AppComponent { 
-  constructor() {
-    console.log(environment.env);
-  }
+
 }
+

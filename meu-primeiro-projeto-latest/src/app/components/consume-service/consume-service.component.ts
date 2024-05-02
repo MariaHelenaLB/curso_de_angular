@@ -1,16 +1,17 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { NewComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
 
 @Component({
-  selector: 'app-new-component',
+  selector: 'app-consume-service',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './new-component.component.html',
-  styleUrl: './new-component.component.scss',
+  imports: [CommonModule, NewComponent],
+  templateUrl: './consume-service.component.html',
+  styleUrl: './consume-service.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewComponent implements OnInit {
-  public name = 'New Component';
+export class ConsumeServiceComponent implements OnInit {
 
   #apiService = inject(ApiService);
   constructor(
@@ -29,10 +30,6 @@ export class NewComponent implements OnInit {
       error : (error) => console.log(error),
       complete : () => console.log("complete!"),    
     })
-
-    this.#apiService.name$.next('MH')
-
-    this.#apiService.name.set('MH $')
 
     setTimeout(() => {
       console.log(this.#apiService.name())
