@@ -16,7 +16,7 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
 
   public myNumber = signal(0);
   @Input() set inputMyNumber(value: number) {
-    this.myNumber.set(value)
+    this.myNumber.set(value);
   }
 
   public name = signal('Input: sem valor');
@@ -30,7 +30,7 @@ export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterView
     .subscribe({
       next: (next) => console.log('next', next),
       error: (error) => console.log('error', error),
-      complete: () => console.log('Complete!')
+      complete: () => console.log('Complete!'),
     });
   */
 
