@@ -1,5 +1,14 @@
-import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject, signal } from '@angular/core';
+import { environment } from 'environments/environment';
+
+//rxjs
+import { BehaviorSubject, Observable } from 'rxjs';
+
+interface ITask {
+  id: String; 
+  title:string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +20,11 @@ export class ApiService {
   
   //antigo
   public name$ = new BehaviorSubject('Maria Helena $');
-  
-  constructor() { }
+
+  #http = inject(HttpClient);
+  #url = signal(environment.apiTask);
+
+  public httpListTask$(): Observable<ITask[]> {
+    return this.#http.get<ITask[]>(this.#url());
+  }
 }
