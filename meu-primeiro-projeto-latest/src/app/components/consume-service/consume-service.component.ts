@@ -20,6 +20,7 @@ export class ConsumeServiceComponent implements OnInit {
   title:string;
   }>>(null);
 
+  public getTask$ =this.#apiService.httpListTask$();
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
