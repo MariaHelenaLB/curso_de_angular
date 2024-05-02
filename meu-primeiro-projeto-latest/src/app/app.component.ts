@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 //Components
-import { NewComponent } from './components/new-component/new-component.component';
-import { TemplateBindingComponent } from './components/template/template-binding/template-binding.component';
-import { TemplateVariablesComponent } from './components/template/template-variables/template-variables.component';
-import { TemplateControlFlowComponent } from './components/template/template-control-flow/template-control-flow.component';
-import { TemplateDeferrableViewsComponent } from './components/template/template-deferrable-views/template-deferrable-views.component';
-import { SignalComponent } from "./components/signal/signal.component";
-import { PaiOuMaeComponent } from './components/comunicacao-entre-components/pai-ou-mae/pai-ou-mae.component';
-import { AngularPipesComponent } from './components/pipes/angular-pipes/angular-pipes.component';
-import { ReactiveFormsComponent } from './components/forms/reactive-forms/reactive-forms.component';
-import { TemplateDrivenFormsComponent } from './components/forms/template-driven-forms/template-driven-forms.component';
-import { ContentComponent } from './components/content/content.component';
-import { HostElementsComponent } from './components/host-elements/host-elements.component';
-import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 
+import { NewComponent } from '@components/new-component/new-component.component';
+import { TemplateBindingComponent } from '@components/template/template-binding/template-binding.component';
+import { TemplateVariablesComponent } from '@components/template/template-variables/template-variables.component';
+import { TemplateControlFlowComponent } from '@components/template/template-control-flow/template-control-flow.component';
+import { TemplateDeferrableViewsComponent } from '@components/template/template-deferrable-views/template-deferrable-views.component';
+import { SignalComponent } from "@components/signal/signal.component";
+import { PaiOuMaeComponent } from '@components/comunicacao-entre-components/pai-ou-mae/pai-ou-mae.component';
+import { AngularPipesComponent } from '@components/pipes/angular-pipes/angular-pipes.component';
+import { ReactiveFormsComponent } from '@components/forms/reactive-forms/reactive-forms.component';
+import { TemplateDrivenFormsComponent } from '@components/forms/template-driven-forms/template-driven-forms.component';
+import { ContentComponent } from '@components/content/content.component';
+import { HostElementsComponent } from '@components/host-elements/host-elements.component';
+import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
 
 @Component({
   selector: 'app-root',
@@ -51,21 +51,9 @@ import { LifeCycleComponent } from './components/life-cycle/life-cycle.component
   <app-host-elements />
 -->
 
-  <h1>Curso de Angular</h1>
+<!--
+  *dicione esses itens dentro do app Component*
 
-  @if (boolean) {
-    <app-life-cycle [inputMyNumber]="number()"> 
-      <p #text>Text</p>
-    </app-life-cycle>
-  }
-
-  <button (click)="boolean = !boolean">Destroy Component</button>  
-
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
-})
-export class AppComponent implements OnInit {
   public number = signal(1);
   public boolean = true;
 
@@ -76,4 +64,23 @@ export class AppComponent implements OnInit {
       });
     }, 1000);
   }
-}
+  
+  *Adicione esses itens dentro do HTML*
+
+  @if (boolean) {
+    <app-life-cycle [inputMyNumber]="number()"> 
+      <p #text>Text</p>
+    </app-life-cycle>
+  }
+  
+  <button (click)="boolean = !boolean">Destroy Component</button>  
+-->
+
+  <h1>Curso de Angular</h1>
+
+
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
+})
+export class AppComponent { }
