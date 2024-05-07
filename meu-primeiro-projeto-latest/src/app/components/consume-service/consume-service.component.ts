@@ -10,16 +10,18 @@ import { ApiService } from 'app/services/api.service';
   imports: [CommonModule, NewComponent],
   templateUrl: './consume-service.component.html',
   styleUrl: './consume-service.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsumeServiceComponent implements OnInit {
   #apiService = inject(ApiService);
 
-  public getListTask = this.#apiService.getListTask;
+  public getListTasks = this.#apiService.getListTasks;
+  public getTasksId = this.#apiService.getTasksId;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.#apiService.httpListTask$().subscribe();
+    this.#apiService.httpListTasks$().subscribe();
+    this.#apiService.httpTasksId$('AmEk1aM8oC1nXZMN3tIH').subscribe();
   }
 }

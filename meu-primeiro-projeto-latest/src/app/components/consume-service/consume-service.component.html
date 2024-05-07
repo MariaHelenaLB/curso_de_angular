@@ -1,6 +1,8 @@
 <h2>Services</h2>
 
-@if(getListTask(); as data) {
+<h3>Get List</h3>
+
+@if(getListTasks(); as data) {
 <ul>
     @for (item of data; track item) {
     <li>
@@ -17,4 +19,10 @@
 <li>
     Loading...
 </li>
+}
+<h3>Get Item Id</h3>
+@if (getTasksId(); as data) {
+
+<p>Get por ID: {{ data.id }} - {{ data.title }}</p>
+
 }

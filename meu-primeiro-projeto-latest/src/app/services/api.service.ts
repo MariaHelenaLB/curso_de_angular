@@ -5,7 +5,7 @@ import { environment } from 'environments/environment';
 //rxjs
 import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 
-interface ITask {
+interface ITasks {
   id: String;
   title: string;
 }
@@ -21,16 +21,29 @@ export class ApiService {
   public name$ = new BehaviorSubject('Maria Helena $');
 
   #http = inject(HttpClient);
-  #url = signal(environment.apiTask);
+  #url = signal(environment.apiTasks);
 
-  #setListTask = signal<ITask[] | null>(null);
-  get getListTask() {
-    return this.#setListTask.asReadonly();
+  #setListTasks = signal<ITasks[] | null>(null);
+  get getListTasks() {
+    return this.#setListTasks.asReadonly();
+  }
+  public httpListTasks$(): Observable<ITasks[]> {
+    
+    return this.#http.get<ITasks[]>(this.#url()).pipe(
+      shareReplay(),
+      tap((res) => this.#setListTasks.set(res))
+    );
   }
 
-  public httpListTask$(): Observable<ITask[]> {
-    return this.#http.get<ITask[]>(this.#url()).pipe(
+  #setTasksId = signal<ITasks | null>(null);
+  get getTasksId() {
+    return this.#setTasksId.asReadonly();
+  }
+  public httpTasksId$(id: string): Observable<ITasks> {
+    console.log(`${this.#url()}${id}`);
+    return this.#http.get<ITasks>(`${this.#url()}${id}`).pipe(
       shareReplay(),
-      tap((res) => this.#setListTask.set(res)));
+      tap((res) => this.#setTasksId.set(res))
+    );
   }
 }
