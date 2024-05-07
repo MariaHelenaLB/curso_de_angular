@@ -3,7 +3,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { environment } from 'environments/environment';
 
 //rxjs
-import { BehaviorSubject, Observable, share, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 
 interface ITask {
   id: String;
@@ -14,7 +14,6 @@ interface ITask {
   providedIn: 'root'
 })
 export class ApiService {
-
   //novo
   public name = signal('Maria Helena');
 
@@ -24,7 +23,12 @@ export class ApiService {
   #http = inject(HttpClient);
   #url = signal(environment.apiTask);
 
+  #setListTask = signal<ITask[] | null>(null);
+  public getListTask = this.#setListTask.asReadonly();
+
   public httpListTask$(): Observable<ITask[]> {
-    return this.#http.get<ITask[]>(this.#url()).pipe(shareReplay());
+    return this.#http
+    .get<ITask[]>(this.#url())
+    .pipe(tap((res) => this.#setListTask.set(res)));
   }
 }
