@@ -28,7 +28,7 @@ export class ApiService {
     return this.#setListTasks.asReadonly();
   }
   public httpListTasks$(): Observable<ITasks[]> {
-    
+
     return this.#http.get<ITasks[]>(this.#url()).pipe(
       shareReplay(),
       tap((res) => this.#setListTasks.set(res))
@@ -44,6 +44,17 @@ export class ApiService {
     return this.#http.get<ITasks>(`${this.#url()}${id}`).pipe(
       shareReplay(),
       tap((res) => this.#setTasksId.set(res))
+    );
+  }
+
+  #setTasksCreate = signal<ITasks | null>(null);
+  get getTasksCreate() {
+    return this.#setTasksCreate.asReadonly();
+  }
+  public httpTasksCreate$(title: string): Observable<ITasks> {
+    return this.#http.post<ITasks>(this.#url(), {title}).pipe(
+      shareReplay(),
+      tap((res) => this.#setTasksCreate.set(res))
     );
   }
 }

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Title } from '@angular/platform-browser';
 import { NewComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
+import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-consume-service',
@@ -23,5 +25,12 @@ export class ConsumeServiceComponent implements OnInit {
     //Add 'implements OnInit' to the class.
     this.#apiService.httpListTasks$().subscribe();
     this.#apiService.httpTasksId$('AmEk1aM8oC1nXZMN3tIH').subscribe();
+  }
+
+  public httpTasksCreate(title: string) {
+    return this.#apiService
+    .httpTasksCreate$(title)
+    .pipe(concatMap(() => this.#apiService.httpListTasks$()))
+    .subscribe();
   }
 }

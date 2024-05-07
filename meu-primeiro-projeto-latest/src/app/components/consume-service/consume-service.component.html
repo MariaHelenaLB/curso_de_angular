@@ -26,3 +26,7 @@
 <p>Get por ID: {{ data.id }} - {{ data.title }}</p>
 
 }
+
+<h3>Post Create</h3>
+<input type="text" #creatTitle placeholder="Add title">
+<button (click)="httpTasksCreate(creatTitle.value)"> Create</button>
