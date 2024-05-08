@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { environment } from 'environments/environment';
 
@@ -33,9 +33,12 @@ export class ApiService {
     return this.#setListTasksError.asReadonly();
   }
   public httpListTasks$(): Observable<ITasks[]> {
+    const headers = new HttpHeaders().set('vida-full-stack', 'dev');
+    const params = new HttpParams().set('page', '1').set('previous_pages', '1');
+
     this.#setListTasks.set(null);
     this.#setListTasksError.set(null);
-    return this.#http.get<ITasks[]>(this.#url()).pipe(
+    return this.#http.get<ITasks[]>(this.#url(), {headers, params}).pipe(
       shareReplay(),
       tap((res) => this.#setListTasks.set(res)),
       catchError((error: HttpErrorResponse) => {
