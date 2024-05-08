@@ -18,7 +18,14 @@ export class ConsumeServiceComponent implements OnInit {
   #apiService = inject(ApiService);
 
   public getListTasks = this.#apiService.getListTasks;
+  
   public getTasksId = this.#apiService.getTasksId;
+  
+  public getListTasksError = this.#apiService.getListTasksError
+  public getTasksIdError = this.#apiService.getTasksIdError;
+  public getTasksCreateError = this.#apiService.getTasksCreateError;
+  public getTasksUpdateError = this.#apiService.getTasksUpdateError;
+  public getTasksDeleteError = this.#apiService.getTasksDeleteError;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

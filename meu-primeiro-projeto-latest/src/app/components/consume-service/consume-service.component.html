@@ -20,18 +20,34 @@
     Loading...
 </li>
 }
+
+@if (getListTasksError()) {
+    <p>{{getListTasksError()}}</p>
+}
+
+
+@if(getTasksDeleteError()) {
+<p>{{getTasksDeleteError()}}</p>
+}
+
 <h3>Get Item Id</h3>
 @if (getTasksId(); as data) {
-
 <p>Get por ID: {{ data.id }} - {{ data.title }}</p>
-
+} @else {
+{{getTasksIdError()}}
 }
 
 <h3>Post Create</h3>
 <input type="text" #creatTitle placeholder="Add title">
 <button (click)="httpTasksCreate(creatTitle.value)">Create</button>
+@if (getTasksCreateError()) {
+<p>{{getTasksCreateError()}}</p>
+}
 
 <h3>Patch Update</h3>
 <input type="text" #updateId placeholder="Add id">
 <input type="text" #updateTitle placeholder="Add title">
 <button (click)="httpTasksUpdate(updateId.value, updateTitle.value)">Update</button>
+@if (getTasksUpdateError()) {
+<p>{{getTasksUpdateError()}}</p>
+}
