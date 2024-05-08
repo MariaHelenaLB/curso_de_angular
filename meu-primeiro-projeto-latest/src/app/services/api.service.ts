@@ -33,13 +33,12 @@ export class ApiService {
     return this.#setListTasksError.asReadonly();
   }
   public httpListTasks$(): Observable<ITasks[]> {
-    const headers = new HttpHeaders().set('vida-full-stack', 'dev');
     const params = new HttpParams().set('page', '1').set('previous_pages', '1');
 
     this.#setListTasks.set(null);
     this.#setListTasksError.set(null);
-    return this.#http.get<ITasks[]>(this.#url(), {headers, params}).pipe(
-      shareReplay(),
+    return this.#http.get<ITasks[]>(this.#url(), {params}).pipe(
+      
       tap((res) => this.#setListTasks.set(res)),
       catchError((error: HttpErrorResponse) => {
         this.#setListTasksError.set(error.error.message);
@@ -61,8 +60,7 @@ export class ApiService {
     this.#setTasksId.set(null)
     this.#setTasksIdError.set(null)
     console.log(`${this.#url()}${id}`);
-    return this.#http.get<ITasks>(`${this.#url()}${id}`).pipe(
-      shareReplay(),
+    return this.#http.get<ITasks>(`${this.#url()}${id}`).pipe(   
       tap((res) => this.#setTasksId.set(res)),
       catchError((error: HttpErrorResponse) => {
         this.#setTasksIdError.set(error.error.message);
@@ -78,7 +76,6 @@ export class ApiService {
   public httpTasksCreate$(title: string): Observable<ITasks> {
     this.#setTasksCreateError.set(null);
     return this.#http.post<ITasks>(this.#url(), { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTasksCreateError.set(error.error.message);
         return throwError(() => error);
@@ -93,7 +90,6 @@ export class ApiService {
   public httpTasksUpdate$(id: string, title: string): Observable<void> {
     this.#setTasksUpdateError.set(null);
     return this.#http.patch<void>(`${this.#url()}${id}`, { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTasksUpdateError.set(error.error.message);
         return throwError(() => error);
@@ -107,8 +103,7 @@ export class ApiService {
   }
   public httpTasksDelete$(id: string): Observable<void> {
     this.#setTasksDeleteError.set(null);
-    return this.#http.delete<void>(`${this.#url()}${id}`, {}).pipe(
-      shareReplay(),
+    return this.#http.delete<void>(`${this.#url()}${id}`, {}).pipe( 
       catchError((error: HttpErrorResponse) => {
         this.#setTasksDeleteError.set(error.error.message);
         return throwError(() => error);
