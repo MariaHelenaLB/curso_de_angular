@@ -86,7 +86,7 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class AppComponent { 
+export class AppComponent {
 
 }
 

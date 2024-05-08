@@ -6,7 +6,7 @@ import { environment } from 'environments/environment';
 import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 
 interface ITasks {
-  id: String;
+  id: string;
   title: string;
 }
 
@@ -47,25 +47,21 @@ export class ApiService {
     );
   }
 
-  #setTasksCreate = signal<ITasks | null>(null);
-  get getTasksCreate() {
-    return this.#setTasksCreate.asReadonly();
-  }
   public httpTasksCreate$(title: string): Observable<ITasks> {
-    return this.#http.post<ITasks>(this.#url(), {title}).pipe(
+    return this.#http.post<ITasks>(this.#url(), { title }).pipe(shareReplay());
+  }
+
+  public httpTasksUpdate$(id: string, title: string): Observable<ITasks> {
+    return this.#http.patch<ITasks>(`${this.#url()}${id}`, { title }).pipe(
       shareReplay(),
-      tap((res) => this.#setTasksCreate.set(res))
     );
   }
 
-  #setTasksUpdate = signal<ITasks | null>(null);
-  get getTasksUpdate() {
-    return this.#setTasksUpdate.asReadonly();
-  }
-  public httpTasksUpdate$(id: string, title: string): Observable<ITasks> {
-    return this.#http.patch<ITasks>(`${this.#url()}${id}`, {title}).pipe(
-      shareReplay(),
-      tap((res) => this.#setTasksUpdate.set(res))
-    );
+  public httpTasksDelete$(id: string): Observable<void> {
+    return this.#http
+      .delete<void>(`${this.#url()}${id}`, {})
+      .pipe(
+        shareReplay()
+      );
   }
 }

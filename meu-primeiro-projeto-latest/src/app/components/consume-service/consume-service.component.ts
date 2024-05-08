@@ -29,15 +29,22 @@ export class ConsumeServiceComponent implements OnInit {
 
   public httpTasksCreate(title: string) {
     return this.#apiService
-    .httpTasksCreate$(title)
-    .pipe(concatMap(() => this.#apiService.httpListTasks$()))
-    .subscribe();
+      .httpTasksCreate$(title)
+      .pipe(concatMap(() => this.#apiService.httpListTasks$()))
+      .subscribe();
   }
 
-  public httpTasksUpdate(id: string,title: string) {
+  public httpTasksUpdate(id: string, title: string) {
     return this.#apiService
-    .httpTasksUpdate$(id, title)
-    .pipe(concatMap(() => this.#apiService.httpListTasks$()))
-    .subscribe();
+      .httpTasksUpdate$(id, title)
+      .pipe(concatMap(() => this.#apiService.httpListTasks$()))
+      .subscribe();
+  }
+  
+  public httpTasksDelete(id: string) {
+    return this.#apiService
+      .httpTasksDelete$(id)
+      .pipe(concatMap(() => this.#apiService.httpListTasks$()))
+      .subscribe();
   }
 }

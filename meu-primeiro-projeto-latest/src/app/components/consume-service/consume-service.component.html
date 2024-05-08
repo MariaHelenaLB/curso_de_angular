@@ -6,7 +6,7 @@
 <ul>
     @for (item of data; track item) {
     <li>
-        {{ item.id }} - {{ item.title }}
+        {{ item.id }} - {{ item.title }} - <button (click)="httpTasksDelete(item.id)">Delete</button>
     </li>
     } @empty {
     <li>
