@@ -57,4 +57,15 @@ export class ApiService {
       tap((res) => this.#setTasksCreate.set(res))
     );
   }
+
+  #setTasksUpdate = signal<ITasks | null>(null);
+  get getTasksUpdate() {
+    return this.#setTasksUpdate.asReadonly();
+  }
+  public httpTasksUpdate$(id: string, title: string): Observable<ITasks> {
+    return this.#http.patch<ITasks>(`${this.#url()}${id}`, {title}).pipe(
+      shareReplay(),
+      tap((res) => this.#setTasksUpdate.set(res))
+    );
+  }
 }
