@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'sevicos',
+        path: 'servicos/:id',
         title: 'Servicos da página',
         component: ServicosPrestadosComponent,
     },
