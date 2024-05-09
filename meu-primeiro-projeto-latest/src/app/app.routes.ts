@@ -10,24 +10,52 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 export const routes: Routes = [
     {
         path: '',
-        title: 'Home da página',
-        component: HomeComponent,
+        children: [
+            {
+                path: '',
+                title: 'Home da página',
+                component: HomeComponent,
+            },
+
+            {
+                path: 'sobre',
+                title: 'Sobre da página',
+                component: SobreComponent,
+            },
+
+            {
+                path: 'servicos/:id',
+                title: 'Servicos da página',
+                component: ServicosPrestadosComponent,
+            },
+        ]
     },
 
     {
-        path: 'sobre',
-        title: 'Sobre da página',
-        component: SobreComponent,
-    },
-
-    {
-        path: 'servicos/:id',
-        title: 'Servicos da página',
-        component: ServicosPrestadosComponent,
+        path: 'dashboard',
+        children: [
+            {
+                path: '',
+                title: 'Home da página',
+                component: HomeComponent,
+            },
+        
+            {
+                path: 'sobre',
+                title: 'Sobre da página',
+                component: SobreComponent,
+            },
+        
+            {
+                path: 'servicos/:id',
+                title: 'Servicos da página',
+                component: ServicosPrestadosComponent,
+            },
+        ]
     },
 
     {
         path: '**',
         component: NotFoundComponent,
-    }
+    },
 ];
