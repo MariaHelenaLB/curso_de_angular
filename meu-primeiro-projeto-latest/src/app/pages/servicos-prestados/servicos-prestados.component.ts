@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './servicos-prestados.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ServicosPrestadosComponent implements OnInit {
+export default class ServicosPrestadosComponent implements OnInit {
   #route = inject(ActivatedRoute);
 
   public getId = signal<null | string>(null);
