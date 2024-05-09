@@ -15,9 +15,7 @@ import { httpInterceptor } from './interceptor/http.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptors([httpInterceptor])
-    ),
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    provideHttpClient(withInterceptors([httpInterceptor])),
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };
