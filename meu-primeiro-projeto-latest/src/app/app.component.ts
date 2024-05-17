@@ -20,12 +20,13 @@ import { ContentComponent } from '@components/content/content.component';
 import { HostElementsComponent } from '@components/host-elements/host-elements.component';
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
+import { TranslateComponent } from '@components/translate/translate.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent, TranslateComponent],
 
   template: `
 <!-- 
@@ -82,8 +83,7 @@ import { ConsumeServiceComponent } from '@components/consume-service/consume-ser
 -->
 
   <h1>Curso de Angular</h1>
-  <h2>Rotas</h2>
-  <router-outlet></router-outlet>
+  <app-translate />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 
