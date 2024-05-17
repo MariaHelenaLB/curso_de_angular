@@ -1,3 +1,5 @@
+<h2>Rotas</h2>
+
 <h3>Home</h3>
 <a 
     [routerLink]="['/curso']" 
@@ -21,6 +23,7 @@
 
 <a 
     [routerLink]="['servicos', 'web-desing']" 
+    [queryParams]="{name: 'xpto', age: 18}"
     routerLinkActive="active"  
     ariaCurrentWhenActive="page"
 >
