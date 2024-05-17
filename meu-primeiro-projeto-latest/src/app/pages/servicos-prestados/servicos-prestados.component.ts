@@ -11,8 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ServicosPrestadosComponent implements OnInit {
-  #route = inject(ActivatedRoute);
-  #router = inject(Router); // # = private router
+  //# = private 
+  #route = inject(ActivatedRoute); //serve para fazer parametros
+  #router = inject(Router); // gerenciamento de redirecionamentos
 
   public getId = signal<null | string>(null);
   @Input() set id(id: string) {
