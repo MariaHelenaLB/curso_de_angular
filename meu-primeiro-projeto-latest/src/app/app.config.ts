@@ -1,4 +1,5 @@
 import { ApplicationConfig, LOCALE_ID } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { environment } from 'environments/environment';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -43,6 +44,7 @@ export const appConfig: ApplicationConfig = {
     },
     */
 
+    provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };

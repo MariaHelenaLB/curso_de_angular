@@ -22,12 +22,13 @@ import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component'
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 import { TranslateComponent } from '@components/translate/translate.component';
 import { OptImageComponent } from '@components/opt-image/opt-image.component';
+import { AnimationsComponent } from '@components/animations/animations.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent, TranslateComponent, OptImageComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent, TranslateComponent, OptImageComponent, AnimationsComponent],
 
   template: `
 <!-- 
@@ -82,10 +83,11 @@ import { OptImageComponent } from '@components/opt-image/opt-image.component';
 ------------------------------------------------------------------
   <app-consume-service />
   <app-translate />
+  <app-opt-image />
 -->
 
   <h1>Curso de Angular</h1>
-  <app-opt-image />
+  <app-animations />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 
