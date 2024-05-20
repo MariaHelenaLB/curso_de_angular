@@ -21,12 +21,13 @@ import { HostElementsComponent } from '@components/host-elements/host-elements.c
 import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
 import { ConsumeServiceComponent } from '@components/consume-service/consume-service.component';
 import { TranslateComponent } from '@components/translate/translate.component';
+import { OptImageComponent } from '@components/opt-image/opt-image.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
 
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent, TranslateComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindingComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalComponent, PaiOuMaeComponent, AngularPipesComponent, ReactiveFormsComponent, TemplateDrivenFormsComponent, ContentComponent, HostElementsComponent, LifeCycleComponent, ConsumeServiceComponent, TranslateComponent, OptImageComponent],
 
   template: `
 <!-- 
@@ -78,12 +79,13 @@ import { TranslateComponent } from '@components/translate/translate.component';
   }
   
   <button (click)="boolean = !boolean">Destroy Component</button>  
-
+------------------------------------------------------------------
   <app-consume-service />
+  <app-translate />
 -->
 
   <h1>Curso de Angular</h1>
-  <app-translate />
+  <app-opt-image />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 
