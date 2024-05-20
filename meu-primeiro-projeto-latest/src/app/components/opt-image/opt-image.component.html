@@ -7,18 +7,18 @@
 -->
 
 <!-- Desa outra froma ganhamos uma perfomance melhor -->
-<img ngSrc="audiRS7capa.jpg" ngSrcset="100w, 200w, 300w" width="400" height="250" alt="Imagem audiRS7" priority>
+<img ngSrc="audiRS7capa.jpg" width="400" height="250" alt="Imagem audiRS7" priority disableOptimizedSrcset>
 
 <!-- A imagem se ajusta com o tamanho da sua div (sem cover a imagem se ajusta, mas fica distorcida) -->
 <div style="position: relative; width: 250px; height: 400px; background: purple;">
 
-    <img ngSrc="audiRS7capa.jpg" ngSrcset="100w, 200w, 300w" alt="Imagem audiRS7" fill priority>
+    <img ngSrc="audiRS7capa.jpg" alt="Imagem audiRS7" fill priority disableOptimizedSrcset>
     
 </div>
 
 <!-- A imagem se ajusta com o tamanho da sua div (com cover a imagem não fica distorcida) -->
 <div style="position: relative; width: 250px; height: 400px; background: purple;">
 
-    <img ngSrc="audiRS7capa.jpg" ngSrcset="100w, 200w, 300w" alt="Imagem audiRS7" fill priority style="object-fit: cover;">
+    <img ngSrc="audiRS7capa.jpg" alt="Imagem audiRS7" fill priority style="object-fit: cover;" disableOptimizedSrcset>
     
 </div>

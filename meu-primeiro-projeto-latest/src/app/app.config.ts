@@ -28,18 +28,20 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([httpInterceptor])),
     provideTranslate(),
 
-    //provideImgixLoader(environment.img),
+    provideImgixLoader(environment.img),
 
-    //OUTRA FORMA DE TRABALHAR E CARREGAR IMAGENS
+    /*
+    OUTRA FORMA DE TRABALHAR E CARREGAR IMAGENS SEM UTILIZAR "provideImgixLoader(environment(img),"
     {
       provide: IMAGE_LOADER, useValue: (config: ImageLoaderConfig) => {
         const img = config.src.split('.');
         const name = img.shift();
         const type = img.pop(); //pop pega o último item do array
         const width = config.width;
-        return `${environment.img}${name}-${width}w.${type}`;
+        return `${environment.img}${name}-${width ? '-' + width + 'w' : ''}w.${type}`;
       },
     },
+    */
 
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
