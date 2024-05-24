@@ -1,4 +1,4 @@
-import { animate, animation, state, style, transition, trigger } from '@angular/animations';
+import { animate, animation, state, style, transition, trigger, keyframes, query, stagger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
@@ -69,6 +69,20 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
       transition('* => move-left', animate('1s')),
       //'* => void' : significa que qualquer mudança de estado para "qualquer estado" para "vazio" (void) será animada usando a animação definida
+    ]),
+    trigger('list-itens', [
+      transition(':enter', [
+        query('li', [
+          style({
+            background: 'yellow',
+            transform: 'translateY(100px)',
+          }),
+          //a animaçãoa acontece por estagios
+          stagger('700ms', [
+            animate('1s'),
+          ])
+        ]),
+      ]),
     ]),
   ],
 })
