@@ -6,6 +6,7 @@
     border-radius: 100px;
     background: purple;
     position: relative;
+    opacity: 0;
 
     &::after {
       content: '';
