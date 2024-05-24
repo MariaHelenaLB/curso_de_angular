@@ -13,22 +13,60 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
     trigger('move-ball', [
 
       state('move-left', style({
-        opacity: 0,
         transform: 'scale(1) translateX(0) rotate(0deg)',
       })
       ),
 
       state('move-right', style({
-        opacity: 1,
-        transform: 'scale(0.7) translateX(300px) rotate(360deg)',
+        transform: 'scale(0.7) translateX(500px) rotate(360deg)',
       })
       ),
 
       //transition('move-left <=> move-right', animate('1s')),
       transition('move-left <=> move-right', animate('1s ease-int-out')),
-      transition(':enter', animate('1s')), //pode utilizar void => * também no lugar de :enter
-      transition(':leave', animate('2s')), //pode utilizar void => * também no lugar de :leave
+
+      transition(':enter', [
+        animate(
+          '2s', 
+          keyframes([
+            style({
+              opacity: 0,
+              transform: 'scale(1) translateX(0) rotate(0deg)',
+            }),
+            style({
+              opacity: 0.5,
+              transform: 'scale(0.9) translateX(250px) rotate(180deg)',
+            }),
+            style({
+              opacity: 1,
+              transform: 'scale(0.7) translateX(500px) rotate(360deg)',
+            }),
+          ])
+        ),
+      ]), //pode utilizar void => * também no lugar de :enter
+
+      transition(':leave', [
+        animate(
+          '2s', 
+          keyframes([
+            style({
+              opacity: 1,
+              transform: 'scale(0.7) translateX(500px) rotate(360deg)',
+            }),
+            style({
+              opacity: 0.5,
+              transform: 'scale(0.9) translateX(250px) rotate(180deg)',
+            }),
+            style({
+              opacity: 0,
+              transform: 'scale(1) translateX(0) rotate(0deg)',
+            }),
+          ])
+        ),
+      ]), //pode utilizar void => * também no lugar de :leave
+
       transition('* => move-right', animate('5s 1s ease-in-out')),
+
       transition('* => move-left', animate('1s')),
       //'* => void' : significa que qualquer mudança de estado para "qualquer estado" para "vazio" (void) será animada usando a animação definida
     ]),
