@@ -1,4 +1,4 @@
-import { animate, animation, state, style, transition, trigger, keyframes, query, stagger } from '@angular/animations';
+import { animate, animation, state, style, transition, trigger, keyframes, query, stagger, group, sequence } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
@@ -23,11 +23,11 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
       ),
 
       //transition('move-left <=> move-right', animate('1s')),
-      transition('move-left <=> move-right', animate('1s ease-int-out')),
+      transition('move-left <=> move-right', animate('1s ease-in-out')),
 
       transition(':enter', [
         animate(
-          '2s', 
+          '2s',
           keyframes([
             style({
               opacity: 0,
@@ -47,7 +47,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
       transition(':leave', [
         animate(
-          '2s', 
+          '2s',
           keyframes([
             style({
               opacity: 1,
@@ -74,13 +74,49 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
       transition(':enter', [
         query('li', [
           style({
-            background: 'yellow',
+            background: 'pink',
             transform: 'translateY(100px)',
           }),
-          //a animaçãoa acontece por estagios
-          stagger('700ms', [
-            animate('1s'),
-          ])
+          //a animação acontece por estagios
+          //stagger('700ms', [animate('1s')]),
+          /* 
+          group([
+            animate(
+              '1s',
+              style({
+                background: 'purple',
+                transform: 'translateY(0)',
+              }),
+            ),
+          ]),
+          */
+          sequence([
+            animate(
+              '1s',
+              style({
+                background: 'purple',
+              })
+            ),
+            animate(
+              '2s',
+              style({
+                background: 'blue',
+              })
+            ),
+            animate(
+              '7s',
+              style({
+                background: 'none',
+                transform: 'translateY(0)',
+              })
+            ),
+            animate(
+              '1s',
+              style({
+                transform: 'translateY(100px)',
+              })
+            ),
+          ]),
         ]),
       ]),
     ]),
