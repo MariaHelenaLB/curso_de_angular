@@ -30,7 +30,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
       transition(':leave', animate('2s')), //pode utilizar void => * também no lugar de :leave
       transition('* => move-right', animate('5s 1s ease-in-out')),
       transition('* => move-left', animate('1s')),
-      //'* => void' : significa que qualquer mudança de estado para "qualquer estado" para "vazio" (void) será animada usando a animação definida 
+      //'* => void' : significa que qualquer mudança de estado para "qualquer estado" para "vazio" (void) será animada usando a animação definida
     ]),
   ],
 })
